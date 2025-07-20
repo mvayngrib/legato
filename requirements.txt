@@ -1,13 +1,13 @@
-accelerate==1.4.0
-datasets==3.2.0
+# accelerate==1.4.0  # training only - multi-GPU orchestration
+# datasets==3.2.0    # training only - dataset loading
 fire==0.7.0
 transformers==4.50.0
 torch==2.6.0
 pillow==11.1.0
-deepspeed
-Levenshtein
+# deepspeed # not needed for inference
+# Levenshtein        # training only - error rate evaluation
 tqdm
-wandb
+# wandb              # training only - experiment tracking
 pyparsing
-zss
+# zss                # training only - TEDn evaluation
 pdf2image==1.17.0
