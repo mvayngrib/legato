@@ -1,0 +1,12 @@
+runpod~=1.7.7
+torch==2.6.0
+transformers==4.50.0
+datasets==2.18.0
+pillow==11.1.0
+tqdm
+hf-transfer
+huggingface-hub
+pyparsing==3.1.1
+typing-extensions>=4.8.0
+packaging
+requests>=2.32.2
