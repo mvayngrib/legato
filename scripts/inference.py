@@ -39,8 +39,8 @@ def load_images(image_path):
 
 def run_inference_on_images(
     images,
-    model_path,
-    processor_path,
+    model,
+    processor,
     device,
     beam_size,
     fp16,
@@ -48,15 +48,9 @@ def run_inference_on_images(
     output_path,
 ):
     # Load the model and processor
-    model = LegatoModel.from_pretrained(model_path)
-    processor = AutoProcessor.from_pretrained(processor_path)
     generation_config = GenerationConfig(
         max_length=2048, num_beams=beam_size, repetition_penalty=1.1
     )
-
-    model = model.to(device=device)
-    if fp16:
-        model = model.half()
 
     output_tokens = []
     for i in tqdm(range(0, len(images), batch_size), desc="Predicting..."):
@@ -147,10 +141,16 @@ if __name__ == "__main__":
 
     args.image_path = os.path.abspath(args.image_path)
     images = load_images(args.image_path)
+    model = LegatoModel.from_pretrained(args.model_path)
+    processor = AutoProcessor.from_pretrained(args.processor_path)
+    model = model.to(device=args.device)
+    if args.fp16:
+        model = model.half()
+
     run_inference_on_images(
         images,
-        args.model_path,
-        args.processor_path,
+        model,
+        processor,
         args.device,
         args.beam_size,
         args.fp16,
