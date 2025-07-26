@@ -7,7 +7,8 @@ import torch
 from PIL import Image
 import base64
 import io
-from transformers import AutoProcessor, LegatoModel
+from legato.models import LegatoModel
+from transformers import AutoProcessor
 
 
 # Device configuration
