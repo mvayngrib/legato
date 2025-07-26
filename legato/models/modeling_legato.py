@@ -39,6 +39,8 @@ class LegatoModel(MllamaForConditionalGeneration):
         *model_args, 
         **kwargs
     ):
+        encoder_path_override = kwargs.pop("encoder_path_override", None)
+
         # Load the model configuration and weights
         if "load_pretrained_encoder" in kwargs:
             load_pretrained_encoder = kwargs.pop("load_pretrained_encoder")
@@ -55,6 +57,9 @@ class LegatoModel(MllamaForConditionalGeneration):
 
         # Check if the encoder is already loaded from the checkpoint
         if model.vision_model is None:
+            encoder_ref = encoder_path_override or getattr(
+                model.config, "encoder_pretrained_model_name_or_path", None
+            )
             # Retrieve the encoder reference from the configuration
             encoder_ref = getattr(model.config, 'encoder_pretrained_model_name_or_path', None)
             if encoder_ref is None:
