@@ -23,7 +23,7 @@ print(f"Device: {DEVICE}")
 print(f"Beam size: {BEAM_SIZE}")
 print(f"FP16: {FP16}")
 
-MODEL_PATH = "guangyangmusic/legato"
+MODEL_PATH = os.environ.get("MODEL_PATH", "guangyangmusic/legato")
 model = LegatoModel.from_pretrained(MODEL_PATH, local_files_only=True)
 model = model.to(device="cuda")
 model = model.half()
