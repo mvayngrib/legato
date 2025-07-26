@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.3
+# syntax=docker/dockerfile:1.4
 FROM nvidia/cuda:12.1.0-base-ubuntu22.04 
 
 # Install Python + deps
