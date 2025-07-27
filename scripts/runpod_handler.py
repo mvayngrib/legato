@@ -38,7 +38,7 @@ def run_inference_on_image(
     try:
         from inference import run_inference_on_images
 
-        print(f"Running inference on image: {image_data}")
+        print("Running inference")
         abc_outputs = run_inference_on_images(
             images=[image_data],
             model=model,
